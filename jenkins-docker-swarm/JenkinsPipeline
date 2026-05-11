@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+    stages {
+
+        stage('checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Prathamesh311/docker-project.git'
+            }
+        }
+
+        stage('build') {
+            steps {
+                dir('jenkins-docker-swarm') {
+                    sh 'docker build -t $image .'
+                }
+            }
+        }
+         stage('tagging') {
+            steps {
+                sh 'docker tag $image $repo'
+            }
+        }
+         stage('push') {
+            steps {
+                sh 'docker login -u prathshingate -p $password'
+                sh 'docker push $repo'
+            }
+        }
+        stage('deploy') {
+            steps {
+             dir('jenkins-docker-swarm') {
+             sh 'docker stack deploy -c docker-compose.yml bank'
+        }
+    }
+}
+}
+}
