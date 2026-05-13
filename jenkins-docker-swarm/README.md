@@ -12,16 +12,6 @@ The project automates the following tasks:
 
 The implementation uses one Manager node and two Worker nodes to create a Docker Swarm cluster capable of running distributed containerized applications.
 
-- Infrastructure Setup
-
-+----------------+---------------+----------------------------------+
-| Node           | Instance Type | Purpose                          |
-+----------------+---------------+----------------------------------+
-| Manager Node   | t2.medium     | Docker Swarm Manager + Jenkins   |
-| Worker Node 1  | t2.micro      | Swarm Worker                     |
-| Worker Node 2  | t2.micro      | Swarm Worker                     |
-+----------------+---------------+----------------------------------+
-
 - Project Workflow
 ```bash
 GitHub Repository
